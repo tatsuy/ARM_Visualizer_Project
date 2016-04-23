@@ -1,0 +1,14 @@
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\HTMLVisualizer.exe.config
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.Form1.resources
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.Properties.Resources.resources
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.csproj.GenerateResource.Cache
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\HTMLVisualizer.exe
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\HTMLVisualizer.pdb
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\CefSharp.Core.dll
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\CefSharp.dll
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\CefSharp.WinForms.dll
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\CefSharp.WinForms.xml
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\CefSharp.xml
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\x64\Debug\CefSharp.Core.xml
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.exe
+C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.pdb

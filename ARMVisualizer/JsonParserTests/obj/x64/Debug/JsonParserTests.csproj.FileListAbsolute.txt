@@ -1,0 +1,12 @@
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\Resources\TestCase\Templates\template.json
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParserTests.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParserTests.pdb
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParser.exe
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\Newtonsoft.Json.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParser.pdb
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\Newtonsoft.Json.xml
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.csprojResolveAssemblyReference.cache
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.pdb

@@ -4,6 +4,6 @@
     <StartArguments>C:\MSWORK\PFE\Tran\Hackathon\template.json</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <StartArguments>C:\MSWORK\PFE\Tran\Hackathon\ExportedTemplate-hack1\template.json</StartArguments>
+    <StartArguments>C:\MSWORK\PFE\Tran\Hackathon\template.json</StartArguments>
   </PropertyGroup>
 </Project>

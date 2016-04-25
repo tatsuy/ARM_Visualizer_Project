@@ -1,0 +1,742 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_vm0_adminPassword": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "virtualMachines_vm1_adminPassword": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "virtualMachines_VMB1_adminPassword": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "virtualMachines_VMB2_adminPassword": {
+            "defaultValue": null,
+            "type": "SecureString"
+        },
+        "availabilitySets_myavlset_name": {
+            "defaultValue": "myavlset",
+            "type": "String"
+        },
+        "availabilitySets_myavsetb_name": {
+            "defaultValue": "myavsetb",
+            "type": "String"
+        },
+        "virtualMachines_vm0_name": {
+            "defaultValue": "vm0",
+            "type": "String"
+        },
+        "virtualMachines_vm1_name": {
+            "defaultValue": "vm1",
+            "type": "String"
+        },
+        "virtualMachines_VMB1_name": {
+            "defaultValue": "VMB1",
+            "type": "String"
+        },
+        "virtualMachines_VMB2_name": {
+            "defaultValue": "VMB2",
+            "type": "String"
+        },
+        "loadBalancers_ILB_name": {
+            "defaultValue": "ILB",
+            "type": "String"
+        },
+        "loadBalancers_loadBalancer_name": {
+            "defaultValue": "loadBalancer",
+            "type": "String"
+        },
+        "networkInterfaces_vm0_name": {
+            "defaultValue": "vm0",
+            "type": "String"
+        },
+        "networkInterfaces_vm1_name": {
+            "defaultValue": "vm1",
+            "type": "String"
+        },
+        "networkInterfaces_vmb1465_name": {
+            "defaultValue": "vmb1465",
+            "type": "String"
+        },
+        "networkInterfaces_vmb2917_name": {
+            "defaultValue": "vmb2917",
+            "type": "String"
+        },
+        "networkSecurityGroups_ILBNSG_name": {
+            "defaultValue": "ILBNSG",
+            "type": "String"
+        },
+        "publicIPAddresses_publicIp_name": {
+            "defaultValue": "publicIp",
+            "type": "String"
+        },
+        "virtualNetworks_VNET_name": {
+            "defaultValue": "VNET",
+            "type": "String"
+        },
+        "storageAccounts_st4amzlfq5dm6ei_name": {
+            "defaultValue": "st4amzlfq5dm6ei",
+            "type": "String"
+        },
+        "loadBalancers_loadBalancer_id": {
+            "defaultValue": "/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/loadBalancer/frontendIPConfigurations/LBFE",
+            "type": "String"
+        },
+        "loadBalancers_loadBalancer_id_1": {
+            "defaultValue": "/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/loadBalancer/backendAddressPools/LBBAP",
+            "type": "String"
+        },
+        "loadBalancers_loadBalancer_id_2": {
+            "defaultValue": "/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/loadBalancer/probes/lbprobe",
+            "type": "String"
+        },
+        "loadBalancers_loadBalancer_id_3": {
+            "defaultValue": "/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/loadBalancer/frontendIPConfigurations/LBFE",
+            "type": "String"
+        },
+        "loadBalancers_loadBalancer_id_4": {
+            "defaultValue": "/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/loadBalancer/frontendIPConfigurations/LBFE",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Compute/availabilitySets/myavlset' から一般化されました。",
+            "type": "Microsoft.Compute/availabilitySets",
+            "name": "[parameters('availabilitySets_myavlset_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Compute/availabilitySets/myavsetb' から一般化されました。",
+            "type": "Microsoft.Compute/availabilitySets",
+            "name": "[parameters('availabilitySets_myavsetb_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 3
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Compute/virtualMachines/vm0' から一般化されました。",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_vm0_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavlset_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_A1"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_st4amzlfq5dm6ei_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_vm0_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite"
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_vm0_name')]",
+                    "adminUsername": "yamorish",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "adminPassword": "[parameters('virtualMachines_vm0_adminPassword')]"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vm0_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavlset_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_st4amzlfq5dm6ei_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vm0_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Compute/virtualMachines/vm1' から一般化されました。",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_vm1_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavlset_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_A1"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "osdisk",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('http', '://', parameters('storageAccounts_st4amzlfq5dm6ei_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_vm1_name'),'-osdisk.vhd'))]"
+                        },
+                        "caching": "ReadWrite"
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_vm1_name')]",
+                    "adminUsername": "yamorish",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "adminPassword": "[parameters('virtualMachines_vm1_adminPassword')]"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vm1_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavlset_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_st4amzlfq5dm6ei_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vm1_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Compute/virtualMachines/VMB1' から一般化されました。",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_VMB1_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavsetb_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS1"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "[parameters('virtualMachines_VMB1_name')]",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('https', '://', parameters('storageAccounts_st4amzlfq5dm6ei_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_VMB1_name'),'201632103950.vhd'))]"
+                        },
+                        "caching": "ReadWrite"
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_VMB1_name')]",
+                    "adminUsername": "yamorish",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "adminPassword": "[parameters('virtualMachines_VMB1_adminPassword')]"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vmb1465_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavsetb_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_st4amzlfq5dm6ei_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vmb1465_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Compute/virtualMachines/VMB2' から一般化されました。",
+            "type": "Microsoft.Compute/virtualMachines",
+            "name": "[parameters('virtualMachines_VMB2_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavsetb_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS1"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "[parameters('virtualMachines_VMB2_name')]",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "[concat('https', '://', parameters('storageAccounts_st4amzlfq5dm6ei_name'), '.blob.core.windows.net', concat('/vhds/', parameters('virtualMachines_VMB2_name'),'201632104114.vhd'))]"
+                        },
+                        "caching": "ReadWrite"
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_VMB2_name')]",
+                    "adminUsername": "yamorish",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "adminPassword": "[parameters('virtualMachines_VMB2_adminPassword')]"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vmb2917_name'))]"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_myavsetb_name'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_st4amzlfq5dm6ei_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_vmb2917_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/ILB' から一般化されました。",
+            "type": "Microsoft.Network/loadBalancers",
+            "name": "[parameters('loadBalancers_ILB_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "properties": {
+                            "privateIPAddress": "10.0.0.100",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name')), '/subnets/Subnet')]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "[concat(parameters('loadBalancers_ILB_name'),'BackPool')]"
+                    }
+                ],
+                "loadBalancingRules": [],
+                "probes": [],
+                "inboundNatRules": [],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/loadBalancers/loadBalancer' から一般化されました。",
+            "type": "Microsoft.Network/loadBalancers",
+            "name": "[parameters('loadBalancers_loadBalancer_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LBFE",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_publicIp_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "LBBAP"
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "lbrule",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_loadBalancer_id')]"
+                            },
+                            "frontendPort": 80,
+                            "backendPort": 80,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 15,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[parameters('loadBalancers_loadBalancer_id_1')]"
+                            },
+                            "probe": {
+                                "id": "[parameters('loadBalancers_loadBalancer_id_2')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "lbprobe",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "port": 80,
+                            "intervalInSeconds": 15,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [
+                    {
+                        "name": "rdp0",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_loadBalancer_id_3')]"
+                            },
+                            "frontendPort": 6001,
+                            "backendPort": 3389,
+                            "protocol": "Tcp"
+                        }
+                    },
+                    {
+                        "name": "rdp1",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[parameters('loadBalancers_loadBalancer_id_4')]"
+                            },
+                            "frontendPort": 6002,
+                            "backendPort": 3389,
+                            "protocol": "Tcp"
+                        }
+                    }
+                ],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_publicIp_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/networkInterfaces/vm0' から一般化されました。",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_vm0_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig",
+                        "properties": {
+                            "privateIPAddress": "10.0.0.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name')), '/subnets/Subnet')]"
+                            },
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_loadBalancer_name')), '/backendAddressPools/LBBAP')]"
+                                }
+                            ],
+                            "loadBalancerInboundNatRules": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_loadBalancer_name')), '/inboundNatRules/rdp0')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": []
+                },
+                "enableIPForwarding": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_loadBalancer_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/networkInterfaces/vm1' から一般化されました。",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_vm1_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig",
+                        "properties": {
+                            "privateIPAddress": "10.0.0.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name')), '/subnets/Subnet')]"
+                            },
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_loadBalancer_name')), '/backendAddressPools/LBBAP')]"
+                                }
+                            ],
+                            "loadBalancerInboundNatRules": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_loadBalancer_name')), '/inboundNatRules/rdp1')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": []
+                },
+                "enableIPForwarding": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_loadBalancer_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/networkInterfaces/vmb1465' から一般化されました。",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_vmb1465_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAddress": "10.0.1.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name')), '/subnets/Subnet2')]"
+                            },
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_ILB_name')), '/backendAddressPools/ILBBackPool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": []
+                },
+                "enableIPForwarding": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/networkInterfaces/vmb2917' から一般化されました。",
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[parameters('networkInterfaces_vmb2917_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAddress": "10.0.1.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name')), '/subnets/Subnet2')]"
+                            },
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_ILB_name')), '/backendAddressPools/ILBBackPool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": []
+                },
+                "enableIPForwarding": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_VNET_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_ILB_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/networkSecurityGroups/ILBNSG' から一般化されました。",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_ILBNSG_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "DenyAllOutBoundExceptILB",
+                        "properties": {
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 4000,
+                            "direction": "Outbound"
+                        }
+                    },
+                    {
+                        "name": "AllowILBRcv",
+                        "properties": {
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "10.0.0.100",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 3000,
+                            "direction": "Inbound"
+                        }
+                    },
+                    {
+                        "name": "AllowILBSend",
+                        "properties": {
+                            "description": "",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "10.0.0.100/32",
+                            "access": "Allow",
+                            "priority": 2000,
+                            "direction": "Outbound"
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "properties": {
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 4000,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/publicIPAddresses/publicIp' から一般化されました。",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddresses_publicIp_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "dnsSettings": {
+                    "domainNameLabel": "hack1"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Network/virtualNetworks/VNET' から一般化されました。",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_VNET_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Subnet",
+                        "properties": {
+                            "addressPrefix": "10.0.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "Subnet2",
+                        "properties": {
+                            "addressPrefix": "10.0.1.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ILBNSG_name'))]"
+                            }
+                        }
+                    }
+                ]
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ILBNSG_name'))]"
+            ]
+        },
+        {
+            "comments": "リソース '/subscriptions/756fd0d6-2ac0-4d6f-9c95-6eda2ea06422/resourceGroups/hack1/providers/Microsoft.Storage/storageAccounts/st4amzlfq5dm6ei' から一般化されました。",
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[parameters('storageAccounts_st4amzlfq5dm6ei_name')]",
+            "apiVersion": "2015-06-15",
+            "location": "japaneast",
+            "tags": {},
+            "properties": {
+                "accountType": "Standard_LRS"
+            },
+            "dependsOn": []
+        }
+    ]
+}

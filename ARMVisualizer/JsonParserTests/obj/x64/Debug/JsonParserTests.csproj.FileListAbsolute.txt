@@ -10,3 +10,15 @@ C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\bin\x64\Debug\Newtonsoft.Json.xml
 C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.csprojResolveAssemblyReference.cache
 C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.dll
 C:\MSWORK\ARMVP\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\Resources\TestCase\Templates\template.json
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParserTests.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParserTests.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParser.exe
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\Newtonsoft.Json.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\JsonParser.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\Newtonsoft.Json.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\bin\x64\Debug\ja\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.csprojResolveAssemblyReference.cache
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParserTests\obj\x64\Debug\JsonParserTests.pdb

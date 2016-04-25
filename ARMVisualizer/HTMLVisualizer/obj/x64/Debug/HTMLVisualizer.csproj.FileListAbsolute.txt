@@ -27,3 +27,18 @@ C:\MSWORK\ARMVP\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.Proper
 C:\MSWORK\ARMVP\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.csproj.GenerateResource.Cache
 C:\MSWORK\ARMVP\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.exe
 C:\MSWORK\ARMVP\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\HTMLVisualizer.exe.config
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\HTMLVisualizer.exe
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\HTMLVisualizer.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\CefSharp.Core.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\CefSharp.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\CefSharp.WinForms.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\CefSharp.WinForms.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\CefSharp.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\bin\x64\Debug\CefSharp.Core.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.csprojResolveAssemblyReference.cache
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.Form1.resources
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.Properties.Resources.resources
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.csproj.GenerateResource.Cache
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.exe
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\HTMLVisualizer\obj\x64\Debug\HTMLVisualizer.pdb

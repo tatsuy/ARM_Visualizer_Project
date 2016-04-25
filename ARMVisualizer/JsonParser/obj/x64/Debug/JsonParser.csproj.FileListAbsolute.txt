@@ -25,3 +25,17 @@ C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\Newtonsoft.Json.xml
 C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.exe
 C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.pdb
 C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.csprojResolveAssemblyReference.cache
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\JsonParser.exe.config
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.exe
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\JsonParser.exe
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\JsonParser.pdb
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.Core.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.WinForms.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\Newtonsoft.Json.dll
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.WinForms.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.Core.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\bin\x64\Debug\Newtonsoft.Json.xml
+\\KAWINTLMR01\MyDocs8\tatsuy\My Documents\PFE\KFRLocalizer\ARM_Visualizer_Project\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.csprojResolveAssemblyReference.cache

@@ -1,9 +1,0 @@
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\Debug\HTMLVisualizer.exe.config
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\Debug\HTMLVisualizer.exe
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\bin\Debug\HTMLVisualizer.pdb
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\Debug\HTMLVisualizer.csprojResolveAssemblyReference.cache
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\Debug\HTMLVisualizer.Properties.Resources.resources
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\Debug\HTMLVisualizer.csproj.GenerateResource.Cache
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\Debug\HTMLVisualizer.exe
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\Debug\HTMLVisualizer.pdb
-C:\MSWORK\VS_Code\JsonParser\HTMLVisualizer\obj\Debug\HTMLVisualizer.Form1.resources

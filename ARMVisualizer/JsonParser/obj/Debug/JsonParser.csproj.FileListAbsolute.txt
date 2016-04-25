@@ -1,2 +1,0 @@
-C:\MSWORK\VS_Code\JsonParser\JsonParser\bin\Debug\JsonParser.exe.config
-C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\Debug\JsonParser.exe.config

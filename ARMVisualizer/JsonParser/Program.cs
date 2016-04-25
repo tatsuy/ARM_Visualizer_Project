@@ -8,13 +8,18 @@ using Newtonsoft.Json;
 
 namespace JsonParser
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            StreamReader streamReader = new StreamReader(args[0], Encoding.UTF8);
+            var root = ConvertJson(args[0]);
+        }
+
+        static public RootObject ConvertJson(string jsonPath)
+        {
+            StreamReader streamReader = new StreamReader(jsonPath, Encoding.UTF8);
             string json = streamReader.ReadToEnd();
-            var result = JsonConvert.DeserializeObject<RootObject>(json);
+            return JsonConvert.DeserializeObject<RootObject>(json);
         }
     }
 }

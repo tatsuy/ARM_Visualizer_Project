@@ -11,3 +11,17 @@ C:\MSWORK\VS_Code\JsonParser\JsonParser\bin\x64\Debug\CefSharp.Core.xml
 C:\MSWORK\VS_Code\JsonParser\JsonParser\bin\x64\Debug\Newtonsoft.Json.xml
 C:\MSWORK\VS_Code\JsonParser\JsonParser\obj\x64\Debug\JsonParser.exe
 C:\MSWORK\VS_Code\JsonParser\JsonParser\obj\x64\Debug\JsonParser.pdb
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\JsonParser.exe.config
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\JsonParser.exe
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\JsonParser.pdb
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.Core.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.WinForms.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\Newtonsoft.Json.dll
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.WinForms.xml
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.xml
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\CefSharp.Core.xml
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\bin\x64\Debug\Newtonsoft.Json.xml
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.exe
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.pdb
+C:\MSWORK\ARMVP\ARMVisualizer\JsonParser\obj\x64\Debug\JsonParser.csprojResolveAssemblyReference.cache

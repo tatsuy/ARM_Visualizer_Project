@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO; 
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +11,16 @@ using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
 using System.Runtime.InteropServices;
+using ARMJsonTest;
 
 namespace HTMLVisualizer
 {
 
+
     public partial class Form1 : Form
     {
         ChromiumWebBrowser m_chromeBrowser = null;
+        JavaScriptInteractionObj m_jsInteractionObj = null;
 
         public Form1()
         {
@@ -25,11 +29,31 @@ namespace HTMLVisualizer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            m_chromeBrowser = new ChromiumWebBrowser(@"https://www.bing.com/mapspreview");
+            string[] cmds = System.Environment.GetCommandLineArgs();
+            string url = Directory.GetCurrentDirectory() + "\\html\\test.html";
+            foreach (string cmd in cmds)
+            {
+                if (cmd.Contains("htm"))
+                {
+                    url = cmd;
+                    break;
+                } 
+            }
+
+            m_chromeBrowser = new ChromiumWebBrowser(url);
 
             panel1.Controls.Add(m_chromeBrowser);
 
             ChromeDevToolsSystemMenu.CreateSysMenu(this);
+
+            m_jsInteractionObj = new JavaScriptInteractionObj();
+            m_jsInteractionObj.SetChromeBrowser(m_chromeBrowser);
+
+            // Register the JavaScriptInteractionObj class with JS
+            m_chromeBrowser.RegisterJsObject("winformObj", m_jsInteractionObj);
+
+            ChromeDevToolsSystemMenu.CreateSysMenu(this);
+
         }
     }
 

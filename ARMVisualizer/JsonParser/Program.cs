@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Runtime.Serialization.Json;
 
 namespace JsonParser
 {
@@ -17,9 +18,19 @@ namespace JsonParser
 
         static public RootObject ConvertJson(string jsonPath)
         {
-            StreamReader streamReader = new StreamReader(jsonPath, Encoding.UTF8);
-            string json = streamReader.ReadToEnd();
-            return JsonConvert.DeserializeObject<RootObject>(json);
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(RootObject));
+            var json = File.ReadAllText(jsonPath);
+            var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            return (RootObject)ser.ReadObject(memoryStream);
+            //string json = File.ReadAllText(jsonPath);
+            //return JsonConvert.DeserializeObject<RootObject>(json);
+        }
+
+        static public void OutputJsonFile(RootObject root)
+        {
+            
+            string outputJSON = JsonConvert.SerializeObject(root);
+            File.WriteAllText("Output.json", outputJSON);
         }
     }
 }

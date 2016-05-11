@@ -19,6 +19,8 @@ namespace JsonParserTests
                 Console.WriteLine($"{Environment.NewLine}Resource[{count++}]:");
                 WriteResourceLog(item);
             }
+
+            JsonParser.Program.OutputJsonFile(result);
         }
 
         private void WriteResourceLog(Resource resource)

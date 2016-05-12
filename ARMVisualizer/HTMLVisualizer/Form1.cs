@@ -29,6 +29,7 @@ namespace HTMLVisualizer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            /*
             string[] cmds = System.Environment.GetCommandLineArgs();
             string url = Directory.GetCurrentDirectory() + "\\html\\test.html";
             foreach (string cmd in cmds)
@@ -38,7 +39,10 @@ namespace HTMLVisualizer
                     url = cmd;
                     break;
                 } 
-            }
+            }*/
+            
+            File.WriteAllText("test.html", HTMLGenerator.GetSampleHtml());
+            string url = Path.Combine(Environment.CurrentDirectory, "test.html");
 
             m_chromeBrowser = new ChromiumWebBrowser(url);
 

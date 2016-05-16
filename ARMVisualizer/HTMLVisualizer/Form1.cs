@@ -22,6 +22,67 @@ namespace HTMLVisualizer
         ChromiumWebBrowser m_chromeBrowser = null;
         JavaScriptInteractionObj m_jsInteractionObj = null;
 
+        public List<ARMResources> BuildSampleResource()
+        {
+            List<ARMResources> r = new List<ARMResources> ();
+
+            r.Add(new ARMResources("VNET", (int)ARMResourceType.ARM_Vnet, null));
+            r.Add(new ARMResources("subnet1", (int)ARMResourceType.ARM_Subnet, "VNET"));
+            r.Add(new ARMResources("subnet2", (int)ARMResourceType.ARM_Subnet, "VNET"));
+            r.Add(new ARMResources("myavlsetf", (int)ARMResourceType.ARM_AvailabilitySet, "subnet1"));
+            r.Add(new ARMResources("myavlsetb", (int)ARMResourceType.ARM_AvailabilitySet, "subnet2"));
+
+            r.Add(new ARMResources("FLB", (int)ARMResourceType.ARM_LoadBalancer, "subnet1"));
+            r.Add(new ARMResources("ILB", (int)ARMResourceType.ARM_LoadBalancer, "subnet2"));
+
+            r.Add(new ARMResources("VM1", (int)ARMResourceType.ARM_VirtualMachine, "myavlsetf"));
+            r.Add(new ARMResources("VM2", (int)ARMResourceType.ARM_VirtualMachine, "myavlsetf"));
+            r.Add(new ARMResources("VMB1", (int)ARMResourceType.ARM_VirtualMachine, "myavlsetb"));
+            r.Add(new ARMResources("VMB2", (int)ARMResourceType.ARM_VirtualMachine, "myavlsetb"));
+
+            return r;
+        }
+
+        public void CaluculatePosition(List<ARMResources> r)
+        {
+            for(int i = 0; i < 4; i++)
+            { 
+                r.OrderBy(_ => _.level);
+                foreach (var item in r)
+                {
+                    if (item.resparent != null)
+                    {
+                        ARMResources t = r.Find(_ => _.Equals(item.resparent));
+                        if (t.level != -1)
+                        {
+                            item.level = t.level++;
+                        }
+                    }
+                }
+            }
+            r.OrderBy(_ => _.restype);
+            r.OrderBy(_ => _.level);
+
+            foreach (var item in r)
+            {
+                if (item.resparent != null)
+                {
+                    ARMResources t = r.Find(_ => _.resname.Equals(item.resparent));
+                    if (t == null)
+                    {
+                        continue;
+                    }
+                    t.reschild.Add(item.resname);
+                }
+            }
+
+
+
+
+
+
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -40,7 +101,11 @@ namespace HTMLVisualizer
                     break;
                 } 
             }*/
-            
+
+            //List<ARMResources> res = BuildSampleResource();
+            //CaluculatePosition(res);
+
+
             File.WriteAllText("test.html", HTMLGenerator.GetSampleHtml());
             string url = Path.Combine(Environment.CurrentDirectory, "test.html");
 

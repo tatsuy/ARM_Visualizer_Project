@@ -11,6 +11,13 @@ namespace HTMLVisualizer
         {
             return "<html>\n" +
                    "<body>\n" +
+                   "<script type = \"text/javascript\" >\n" +
+                   "    function NSGProp()\n" +
+                   "    {\n" +
+                   "        var result = winformObj.someFunction();\n" +
+                   "        $(\"p\").append(result);\n" +
+                   "    }\n" +
+                   "</script>\n" +
                    "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' width='1500' height='1200' >\n\n";
         }
 
@@ -75,7 +82,7 @@ namespace HTMLVisualizer
                             $"<text style='font-size: 11pt;font-family: consolas;fill : #152060;' y='5' x='210'>Prefix : {subnetPrefix}</text>\n";
             if (networkSecurityGroup)
             {
-                result += $"<image height='50' width='50' x='0' y='15' href='icons/s_shield_bl.png'></image>\n";
+                result += $"<image onclick='NSGProp()' height='50' width='50' x='0' y='15' xlink:href='icons/s_shield_bl.png'></image>\n";
             }
             result += $"</g>\n\n";
             return result;
@@ -179,7 +186,6 @@ namespace HTMLVisualizer
             result.Append(HTMLGenerator.WriteVM(Xbase + 1070, YBase + 350, 180));
             result.Append(HTMLGenerator.WriteNIC(Xbase + 1080, YBase + 385, networkSecurityGroup: true));
             result.Append(HTMLGenerator.WriteNIC(Xbase + 1080, YBase + 420));
-
 
             result.Append(HTMLGenerator.WriteFooter());
 

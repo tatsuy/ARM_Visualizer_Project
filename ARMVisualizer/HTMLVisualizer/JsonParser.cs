@@ -86,7 +86,7 @@ namespace HTMLVisualizer
                 if(property.First().Type == JTokenType.String)
                     result.Last().Value = property.First().ToString();
                 else if (property.First().Type == JTokenType.Array)
-                    result.Last().properties.AddRange(GetPropertiesbyJsonObject(property["properties"].ToArray()));
+                    result.Last().properties.AddRange(GetPropertiesbyJsonObject(property.Children().ToArray()));
             }
             return result;
         }

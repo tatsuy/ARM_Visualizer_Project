@@ -70,6 +70,8 @@
     </Compile>
     <Compile Include="HTMLGenerator.cs" />
     <Compile Include="JavaScriptInteractionObj.cs" />
+    <Compile Include="JsonParser.cs" />
+    <Compile Include="JsonTemplate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

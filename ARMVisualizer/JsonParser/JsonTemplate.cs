@@ -20,55 +20,12 @@ namespace JsonParser
 
     public class Parameters
     {
-        public Parameter virtualMachines_vm0_adminPassword { get; set; }
-        public Parameter virtualMachines_vm1_adminPassword { get; set; }
-        public Parameter virtualMachines_VMB1_adminPassword { get; set; }
-        public Parameter virtualMachines_VMB2_adminPassword { get; set; }
-        public Parameter availabilitySets_myavlset_name { get; set; }
-        public Parameter availabilitySets_myavsetb_name { get; set; }
-        public Parameter virtualMachines_vm0_name { get; set; }
-        public Parameter virtualMachines_vm1_name { get; set; }
-        public Parameter virtualMachines_VMB1_name { get; set; }
-        public Parameter virtualMachines_VMB2_name { get; set; }
-        public Parameter loadBalancers_ILB_name { get; set; }
-        public Parameter loadBalancers_loadBalancer_name { get; set; }
-        public Parameter networkInterfaces_vm0_name { get; set; }
-        public Parameter networkInterfaces_vm1_name { get; set; }
-        public Parameter networkInterfaces_vmb1465_name { get; set; }
-        public Parameter networkInterfaces_vmb2917_name { get; set; }
-        public Parameter networkSecurityGroups_ILBNSG_name { get; set; }
-        public Parameter publicIPAddresses_publicIp_name { get; set; }
-        public Parameter virtualNetworks_VNET_name { get; set; }
-        public Parameter storageAccounts_st4amzlfq5dm6ei_name { get; set; }
-        public Parameter loadBalancers_loadBalancer_id { get; set; }
-        public Parameter loadBalancers_loadBalancer_id_1 { get; set; }
-        public Parameter loadBalancers_loadBalancer_id_2 { get; set; }
-        public Parameter loadBalancers_loadBalancer_id_3 { get; set; }
-        public Parameter loadBalancers_loadBalancer_id_4 { get; set; }
+        public List<Parameter> parameters { get; set; }
     }
 
     public class Variables
     {
-        public string storageAccountName { get; set; }
-        public string sizeOfDiskInGB { get; set; }
-        public string dataDisk1VhdName { get; set; }
-        public string imagePublisher { get; set; }
-        public string imageOffer { get; set; }
-        public string OSDiskName { get; set; }
-        public string nicName { get; set; }
-        public string addressPrefix { get; set; }
-        public string subnetName { get; set; }
-        public string subnetPrefix { get; set; }
-        public string storageAccountType { get; set; }
-        public string publicIPAddressName { get; set; }
-        public string publicIPAddressType { get; set; }
-        public string vmStorageAccountContainerName { get; set; }
-        public string vmName { get; set; }
-        public string vmSize { get; set; }
-        public string virtualNetworkName { get; set; }
-        public string vnetID { get; set; }
-        public string subnetRef { get; set; }
-        public string apiVersion { get; set; }
+        public List<string> variables { get; set; }
     }
 
     public class AvailabilitySet

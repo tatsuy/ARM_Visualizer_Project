@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Runtime.Serialization.Json;
 
 namespace JsonParser
@@ -16,24 +17,55 @@ namespace JsonParser
             var root = ConvertJson(args[0]);
         }
 
-        static public RootObject ConvertJson(string jsonPath)
+        public static RootObject ConvertJson(string jsonPath)
         {
-            /*
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(RootObject));
-            var json = File.ReadAllText(jsonPath);
-            var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(json));
-            return (RootObject)ser.ReadObject(memoryStream);
-            */
-            
-            string json = File.ReadAllText(jsonPath);
-            return JsonConvert.DeserializeObject<RootObject>(json);
+            var jsonObject = ConvertJsonObject(jsonPath);
+
+
+            return null;
         }
 
-        static public void OutputJsonFile(RootObject root)
+        public static JObject ConvertJsonObject(string jsonPath)
+        {
+
+            string json = File.ReadAllText(jsonPath);
+            return JObject.Parse(json);
+        }
+
+        public static void OutputJsonFile(RootObject root)
         {
             
             string outputJson = JsonConvert.SerializeObject(root);
             File.WriteAllText("Output.json", outputJson);
+        }
+
+        public static string ResolveParameters(string json, Parameters parameters)
+        {
+            return ResolveValue(json, parameters, "parameters");
+        }
+
+        private static string ResolveValue(string json, Parameters parameters, string name)
+        {
+            var currentPosition = 0;
+            var startIndex = json.IndexOf(name, currentPosition, StringComparison.OrdinalIgnoreCase);
+            while (startIndex != -1)
+            {
+                var endIndex = json.IndexOf("')", startIndex, StringComparison.OrdinalIgnoreCase);
+                // extract of "parameters('XXXXX')"
+                var parameter = json.Substring(startIndex, endIndex + "')".Length - startIndex);
+
+                var replaceStringStartIndex = (name + "('").Length;
+                var replaceStringEndIndex = parameter.Length - "')".Length;
+                // extract of parameter XXXXX
+                var replaceString = json.Substring(replaceStringStartIndex, replaceStringEndIndex - replaceStringStartIndex + 1);
+                var t = parameters.GetType();
+                object o = Activator.CreateInstance(t);
+                json = json.Replace(parameter, (string)t.GetField(replaceString).GetValue(o));
+                currentPosition = startIndex;
+                startIndex = json.IndexOf(name, currentPosition, StringComparison.OrdinalIgnoreCase);
+            }
+
+            return json;
         }
     }
 }

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser", "JsonParser\JsonParser.csproj", "{13F175CE-FA41-4753-8F8A-7269CD4B680A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTMLVisualizer", "HTMLVisualizer\HTMLVisualizer.csproj", "{B4164442-5FB2-41C9-B557-87567C41BC21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmVisualizerTests", "JsonParserTests\ArmVisualizerTests.csproj", "{800A8BF5-959D-470F-9731-0DBF9C99A8D9}"
@@ -19,18 +17,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Debug|Any CPU.Build.0 = Debug|x64
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Debug|x64.ActiveCfg = Debug|x64
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Debug|x64.Build.0 = Debug|x64
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Debug|x86.Build.0 = Debug|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Release|x64.ActiveCfg = Release|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Release|x64.Build.0 = Release|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Release|x86.ActiveCfg = Release|Any CPU
-		{13F175CE-FA41-4753-8F8A-7269CD4B680A}.Release|x86.Build.0 = Release|Any CPU
 		{B4164442-5FB2-41C9-B557-87567C41BC21}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{B4164442-5FB2-41C9-B557-87567C41BC21}.Debug|Any CPU.Build.0 = Debug|x64
 		{B4164442-5FB2-41C9-B557-87567C41BC21}.Debug|x64.ActiveCfg = Debug|x64

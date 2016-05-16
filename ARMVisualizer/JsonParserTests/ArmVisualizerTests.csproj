@@ -79,12 +79,11 @@
       <Project>{b4164442-5fb2-41c9-b557-87567c41bc21}</Project>
       <Name>HTMLVisualizer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JsonParser\JsonParser.csproj">
-      <Project>{13f175ce-fa41-4753-8f8a-7269cd4b680a}</Project>
-      <Name>JsonParser</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TestCase\Templates\simpleWindows.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\TestCase\Templates\template.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

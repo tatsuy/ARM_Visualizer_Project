@@ -44,13 +44,13 @@ namespace HTMLVisualizer
                    $"<rect x='45' y='-15' width='205' height='40' fill='#152060' stroke='#152060' stroke-width='2'></rect>\n" +
                    $"<text style='font-size: 11pt;font-family: consolas;fill : white;' y='0' x='50'>Name: {vmName}</text>\n" +
                    $"<text style='font-size: 9pt;font-family: consolas;fill : white;' y='17' x='50'>Size: {vmType}</text>\n" +
-                   $"<image height='30' width='30' x='8' y='-10' href='icons/s_VM-symbol-only.png'></image>\n" +
-                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height}' y2='{height}'/>\n" +
-                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height}' x='10'>Prop01: Sample Property Value</text>\n" +
-                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height}' y2='{height}'/>\n" +
-                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height}' x='10'>Prop02: Sample Property Value</text>\n" +
-                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height}' y2='{height}'/>\n" +
-                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{0}' x='10'>Prop03: Sample Property Value</text>" +
+                   $"<image height='30' width='30' x='8' y='-10' xlink:href='icons/s_VM-symbol-only.png'></image>\n" +
+                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 70}' y2='{height - 70}'/>\n" +
+                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 55}' x='10'>Prop01: Sample Property Value</text>\n" +
+                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 50}' y2='{height - 50}'/>\n" +
+                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 35}' x='10'>Prop02: Sample Property Value</text>\n" +
+                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 30}' y2='{height - 30}'/>\n" +
+                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 15}' x='10'>Prop03: Sample Property Value</text>" +
                    $"</g>\n\n";
         }
 
@@ -95,7 +95,7 @@ namespace HTMLVisualizer
         {
             string privateIPAddress = "192.168.10.20";
             return $"<g transform='translate({x} {y})'>\n" +
-                   $"<image height='60' width='60' x='8' y='0' href='icons/s_Azure-load-balancer.png'></image>\n" +
+                   $"<image height='60' width='60' x='8' y='0' xlink:href='icons/s_Azure-load-balancer.png'></image>\n" +
                    $"<text style='font-size: 9pt;font-family: consolas;fill : black;' y='74' x='0'>Plivate IP:</text>\n" +
                    $"<text style='font-size: 9pt;font-family: consolas;fill : black;' y='90' x='0'>{privateIPAddress}</text>\n" +
                    $"</g>\n\n";
@@ -113,10 +113,10 @@ namespace HTMLVisualizer
                             $"<rect x='45' y='0' width='215' height='30' fill='#8B2930' stroke='#8B2930' stroke-width='2'></rect>\n" +
                             $"<text style='font-size: 9pt;font-family: consolas;fill : white;' y='12' x='50'>Public IP: {publicIPAddress}</text>\n" +
                             $"<text style='font-size: 9pt;font-family: consolas;fill : white;' y='24' x='50'>Plivate IP: {privateIPAddress}</text>\n" +
-                            $"<image height='30' width='30' x='8' y='0' href='icons/s2_Network.png'></image>\n";
+                            $"<image height='30' width='30' x='8' y='0' xlink:href='icons/s2_Network.png'></image>\n";
             if (networkSecurityGroup)
             {
-                result += "<image height='30' width='30' x='230' y='0' href='icons/s_shield.png'></image>\n";
+                result += "<image height='30' width='30' x='230' y='0' xlink:href='icons/s_shield.png'></image>\n";
             }
             result += "</g>\n\n";
             return result;
@@ -128,9 +128,10 @@ namespace HTMLVisualizer
             result.Append(HTMLGenerator.WriteHeader());
             int Xbase = 50;
             int YBase = 50;
+
             // VNET --------------------------------------
             result.Append(HTMLGenerator.WriteVNet(Xbase - 25, YBase - 25, 1450, 1050));
-            
+
             // Subnet 1 ---------------------------
             result.Append(HTMLGenerator.WriteSubNet(Xbase + 10, YBase + 10, 950, networkSecurityGroup: true, loadBalancer: true, availabilitySet: true));
 
@@ -178,6 +179,7 @@ namespace HTMLVisualizer
             result.Append(HTMLGenerator.WriteVM(Xbase + 1070, YBase + 350, 180));
             result.Append(HTMLGenerator.WriteNIC(Xbase + 1080, YBase + 385, networkSecurityGroup: true));
             result.Append(HTMLGenerator.WriteNIC(Xbase + 1080, YBase + 420));
+
 
             result.Append(HTMLGenerator.WriteFooter());
 

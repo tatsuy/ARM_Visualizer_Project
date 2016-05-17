@@ -29,18 +29,24 @@ namespace HTMLVisualizer
     {
         public string Name { get; set; }
         public string Value { get; set; }
-        public List<Property> properties { get; set; } = new List<Property>();
+        public List<Property> Properties { get; set; } = new List<Property>();
+        public List<Subnet> Subnets { get; set; } = new List<Subnet>();
     }
-    
-    public class Parameter
+
+    public class Parameter : Variable
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
     }
 
     public class Variable
     {
         public string Name { get; set; }
         public string Value { get; set; }
+    }
+
+    public class Subnet
+    {
+        public string Name { get; set; }
+        public string AddressPrefix { get; set; }
+        public string NetworkSecurityGroup { get; set; }
     }
 }

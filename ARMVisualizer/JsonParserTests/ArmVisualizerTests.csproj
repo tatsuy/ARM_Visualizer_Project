@@ -81,6 +81,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TestCase\Templates\201-2-vms-internal-load-balancer.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\TestCase\Templates\201-1-vm-loadbalancer-2-nics.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\TestCase\Templates\201-vm-custom-script-windows.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\TestCase\Templates\simpleWindows.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

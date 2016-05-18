@@ -43,6 +43,98 @@ namespace HTMLVisualizer
             return r;
         }
 
+        public List<ARMResources> BuildARMResource(List<Resource> resources)
+        {
+            List<ARMResources> r = new List<ARMResources>();
+            foreach (var resource in resources)
+            {
+                var types = resource.Type.Split('/');
+                switch (types.Last())
+                {
+                    case "virtualMachines":
+                        var parent = string.Empty;
+                        if (resource.properties.Exists(_ => _.Name == "availabilitySet"))
+                        {
+                            parent = resource.properties.Find(_ => _.Name == "availabilitySet").Properties.First().Value.Split('/').Last();
+
+                            var nicName = resource.properties.Find(_ => _.Name == "networkProfile").Properties.Find(_ => _.Name == "networkInterfaces").Properties.First().Value.Split('/').Last();
+                            // TODO: ipConfigurations は複数いるが、今回は一つとみなして処理
+                            var subnet = resources.Find(_ => _.Name == nicName).properties.Find(_ => _.Name == "ipConfigurations").Properties.First().Properties.Find(_ => _.Name == "subnet").Properties.First().Value.Split('/').Last();
+
+                            // AvailabilitySet のリソースを追加
+                            if (!r.Exists(_ => _.resname == parent))
+                                r.Add(new ARMResources(parent, (int)ARMResourceType.ARM_AvailabilitySet, subnet));
+
+                            // Subnet のリソースを追加
+                            // TODO: 最終的には virtualNetworks は複数あるものとして処理を変更する
+                            if (!r.Exists(_ => _.resname == subnet))
+                                r.Add(new ARMResources(subnet, (int)ARMResourceType.ARM_Subnet, resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").Name));
+
+                        }
+                        else
+                        {
+                            var nicName = resource.properties.Find(_ => _.Name == "networkProfile").Properties.First().Value.Split('/').Last();
+                            parent = resources.Find(_ => _.Name == nicName).properties.Find(_ => _.Name == "ipConfigurations").Properties.Find(_ => _.Name == "subnet").Value.Split('/').Last();
+
+                            // Subnet のリソースを追加
+                            // TODO: 最終的には virtualNetworks は複数あるものとして処理を変更する
+                            if (!r.Exists(_ => _.resname == parent))
+                                r.Add(new ARMResources(parent, (int)ARMResourceType.ARM_Subnet, resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").Name));
+                        }
+                        // VirtualMachine のリソースを追加
+                        r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_VirtualMachine, parent));
+                        break;
+                    case "loadBalancers":
+                        // LoadBalancer のリソースを追加
+                        if (resource.properties.Find(_ => _.Name == "frontendIPConfigurations").Properties.First().Properties.Find(_ => _.Name == "subnet") != null)
+                        {
+                            parent = resource.properties.Find(_ => _.Name == "frontendIPConfigurations").Properties.First().Properties.Find(_ => _.Name == "subnet").Properties.First().Value.Split('/').Last();
+                            r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_LoadBalancer, parent));
+                        }
+                        break;
+                    case "virtualNetworks":
+                        r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_Vnet, null));
+
+                        var subnets = resource.properties.Find(_ => _.Name == "subnets");
+
+                        // TODO: virtualNetworks がリソースの最後に来ることを前提とした処理のため、後で変更が必要
+                        foreach (var subnet in subnets.Subnets)
+                        {
+                            if (subnet.NetworkSecurityGroup == null) continue;
+                            foreach (var res in r.FindAll(_ => _.resname == subnet.Name))
+                            {
+                                res.nsgpresent = true;
+                            }
+                            
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return r;
+        }
+
+        public List<ARMResources> GetProperty(List<Property> properties, string parent)
+        {
+            List<ARMResources> r = new List<ARMResources>();
+            foreach (var property in properties)
+            {
+                if (property.Name == "subnets")
+                {
+
+                }
+                if (property.Name == "subnet")
+                {
+
+                }
+                if (property.Properties != null && property.Properties.Count > 0)
+                    r.AddRange(GetProperty(property.Properties, parent));
+            }
+            return r;
+        }
+
         public void CaluculatePosition(List<ARMResources> r)
         {
             for (int i = 0; i < 4; i++)
@@ -190,7 +282,8 @@ namespace HTMLVisualizer
                 } 
             }*/
 
-            List<ARMResources> res = BuildSampleResource();
+            var result = JsonParser.ConvertJson("C:\\MSWORK\\PFE\\ARMVisualizer\\ARM_Visualizer_Project\\ARMVisualizer\\JsonParserTests\\Resources\\TestCase\\Templates\\template.json");
+            List<ARMResources> res = BuildARMResource(result.Resources);
             CaluculatePosition(res);
 
             List<ARMResources> a = res;

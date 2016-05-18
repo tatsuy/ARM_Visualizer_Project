@@ -303,7 +303,7 @@ namespace HTMLVisualizer
 
             ChromeDevToolsSystemMenu.CreateSysMenu(this);
 
-            m_jsInteractionObj = new JavaScriptInteractionObj();
+            m_jsInteractionObj = new JavaScriptInteractionObj(result.Resources);
             m_jsInteractionObj.SetChromeBrowser(m_chromeBrowser);
 
             // Register the JavaScriptInteractionObj class with JS

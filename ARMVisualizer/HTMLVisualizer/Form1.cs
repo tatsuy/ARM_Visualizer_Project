@@ -60,6 +60,7 @@ namespace HTMLVisualizer
                             var nicName = resource.properties.Find(_ => _.Name == "networkProfile").Properties.Find(_ => _.Name == "networkInterfaces").Properties.First().Value.Split('/').Last();
                             // TODO: ipConfigurations は複数いるが、今回は一つとみなして処理
                             var subnet = resources.Find(_ => _.Name == nicName).properties.Find(_ => _.Name == "ipConfigurations").Properties.First().Properties.Find(_ => _.Name == "subnet").Properties.First().Value.Split('/').Last();
+                            var addressPrefix = resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").properties.Find(p => p.Name == "subnets").Subnets.Find(s => s.Name == subnet).AddressPrefix;
 
                             // AvailabilitySet のリソースを追加
                             if (!r.Exists(_ => _.resname == parent))
@@ -68,28 +69,30 @@ namespace HTMLVisualizer
                             // Subnet のリソースを追加
                             // TODO: 最終的には virtualNetworks は複数あるものとして処理を変更する
                             if (!r.Exists(_ => _.resname == subnet))
-                                r.Add(new ARMResources(subnet, (int)ARMResourceType.ARM_Subnet, resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").Name));
+                                r.Add(new ARMResources(subnet, (int)ARMResourceType.ARM_Subnet, resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").Name, addressPrefix));
 
                         }
                         else
                         {
                             var nicName = resource.properties.Find(_ => _.Name == "networkProfile").Properties.First().Value.Split('/').Last();
                             parent = resources.Find(_ => _.Name == nicName).properties.Find(_ => _.Name == "ipConfigurations").Properties.Find(_ => _.Name == "subnet").Value.Split('/').Last();
+                            var addressPrefix = resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").properties.Find(p => p.Name == "subnets").Subnets.Find(s => s.Name == parent).AddressPrefix;
 
                             // Subnet のリソースを追加
                             // TODO: 最終的には virtualNetworks は複数あるものとして処理を変更する
                             if (!r.Exists(_ => _.resname == parent))
-                                r.Add(new ARMResources(parent, (int)ARMResourceType.ARM_Subnet, resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").Name));
+                                r.Add(new ARMResources(parent, (int)ARMResourceType.ARM_Subnet, resources.Find(_ => _.Type.Split('/').Last() == "virtualNetworks").Name, addressPrefix));
                         }
                         // VirtualMachine のリソースを追加
-                        r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_VirtualMachine, parent));
+                        r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_VirtualMachine, parent, resource.properties.Find(_ => _.Name == "hardwareProfile").Properties.First().Value));
                         break;
                     case "loadBalancers":
                         // LoadBalancer のリソースを追加
-                        if (resource.properties.Find(_ => _.Name == "frontendIPConfigurations").Properties.First().Properties.Find(_ => _.Name == "subnet") != null)
+                        var loadBalancerFrontEnd = resource.properties.Find(_ => _.Name == "frontendIPConfigurations").Properties.First();
+                        if (loadBalancerFrontEnd.Properties.Find(_ => _.Name == "subnet") != null)
                         {
                             parent = resource.properties.Find(_ => _.Name == "frontendIPConfigurations").Properties.First().Properties.Find(_ => _.Name == "subnet").Properties.First().Value.Split('/').Last();
-                            r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_LoadBalancer, parent));
+                            r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_LoadBalancer, parent, loadBalancerFrontEnd.Properties.Find(_ => _.Name == "privateIPAddress").Value));
                         }
                         break;
                     case "virtualNetworks":
@@ -303,7 +306,7 @@ namespace HTMLVisualizer
 
             ChromeDevToolsSystemMenu.CreateSysMenu(this);
 
-            m_jsInteractionObj = new JavaScriptInteractionObj();
+            m_jsInteractionObj = new JavaScriptInteractionObj(result.Resources);
             m_jsInteractionObj.SetChromeBrowser(m_chromeBrowser);
 
             // Register the JavaScriptInteractionObj class with JS

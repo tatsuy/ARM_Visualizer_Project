@@ -135,9 +135,9 @@ namespace HTMLVisualizer
                 if (property["properties"]?.ToString() != null)
                 {
                     result.Last().AddressPrefix = ResolveName(property["properties"]?["addressPrefix"]?.ToString(), variables, parameters);
-                    if (property["networkSecurityGroup"]?.ToString() != null)
+                    if (property["properties"]?["networkSecurityGroup"]?.ToString() != null)
                     {
-                        result.Last().NetworkSecurityGroup = property["networkSecurityGroup"]?.Last().ToString();
+                        result.Last().NetworkSecurityGroup = ResolveName(property["properties"]?["networkSecurityGroup"]?.Last().ToString(), variables, parameters);
                     }
                 }
             }

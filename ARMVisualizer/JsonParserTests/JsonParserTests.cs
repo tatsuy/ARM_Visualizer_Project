@@ -16,6 +16,7 @@ namespace ARMVisualizerTests
             var result = JsonParser.ConvertJson("template.json");
             //var result2 = Program.ConvertJsonObject("template.json");
             
+
             WriteJsonLog(result);
         }
 

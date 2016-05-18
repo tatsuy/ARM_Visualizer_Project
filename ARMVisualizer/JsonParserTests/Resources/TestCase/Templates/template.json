@@ -51,11 +51,11 @@
             "type": "String"
         },
         "networkInterfaces_vm0_name": {
-            "defaultValue": "vm0",
+            "defaultValue": "vm1000",
             "type": "String"
         },
         "networkInterfaces_vm1_name": {
-            "defaultValue": "vm1",
+            "defaultValue": "vm1001",
             "type": "String"
         },
         "networkInterfaces_vmb1465_name": {

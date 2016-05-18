@@ -48,7 +48,7 @@ namespace HTMLVisualizer
 
             return res;
         }
-
+        
         public ARMResources(String name, int type, String parent)
         {
             x = 0;

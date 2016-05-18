@@ -282,11 +282,12 @@ namespace HTMLVisualizer
                 } 
             }*/
 
-            var result = JsonParser.ConvertJson("C:\\MSWORK\\PFE\\ARMVisualizer\\ARM_Visualizer_Project\\ARMVisualizer\\JsonParserTests\\Resources\\TestCase\\Templates\\template.json");
+            var result = JsonParser.ConvertJson("html\\template.json");
             List<ARMResources> res = BuildARMResource(result.Resources);
             CaluculatePosition(res);
 
-            List<ARMResources> a = res;
+            List<ARMResources> a = new List<ARMResources>();
+            a = res.OrderBy(_ => _.level).ToList();
 
             File.WriteAllText("test.html", HTMLGenerator.GetHtmlFromARMResources(a));
 

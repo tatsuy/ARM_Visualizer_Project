@@ -61,7 +61,7 @@ namespace HTMLVisualizer
                    $"</g>\n\n";
         }
 
-        public static string WriteSubNet(int x, int y, int height, String name, String prop, int width = 370, bool networkSecurityGroup = false,
+        public static string WriteSubNet(int x, int y, int height, String name, String prop, int width = 380, bool networkSecurityGroup = false,
             bool loadBalancer = false, bool availabilitySet = false)
         {
             String subNetName = name;
@@ -154,7 +154,7 @@ namespace HTMLVisualizer
                 if (item.restype == (int)ARMResourceType.ARM_VirtualMachine)
                 {
                     result.Append(HTMLGenerator.WriteVM(item.x, item.y, item.height, item.resname, item.property1));
-                    result.Append(HTMLGenerator.WriteNIC(item.x, item.y + 35));
+                    result.Append(HTMLGenerator.WriteNIC(item.x + 10, item.y + 35));
                 }
 
                 if (item.restype == (int)ARMResourceType.ARM_LoadBalancer)

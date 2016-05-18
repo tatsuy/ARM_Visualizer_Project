@@ -190,8 +190,8 @@ namespace HTMLVisualizer
                     item.x = 30;
                     item.y = 30;
                         
-                    item.width = 400 * (r.Max(_ => _.level) + 1);
-                    item.height = 1200;
+                    item.width = 330 * (r.Max(_ => _.level) + 1);
+                    item.height = 500;
 
                     /// Subnet Loop
                     foreach (var item2 in r)
@@ -210,8 +210,8 @@ namespace HTMLVisualizer
                                 {
                                     item2.lbpresent = true;
 
-                                    opitem.x = (numSubnet * 550) + 100;
-                                    opitem.y = 100;
+                                    opitem.x = (numSubnet * 400) + 530;
+                                    opitem.y = 240;
                                 }
                                 if ((opitem.restype == (int)ARMResourceType.ARM_NetworkSecurityGroup) &&
                                     opitem.resparent == item2.resname)
@@ -220,7 +220,7 @@ namespace HTMLVisualizer
                                 }
                             }
 
-                            item2.x = (numSubnet * 550) + 100;
+                            item2.x = (numSubnet * 700) + 100;
                             item2.y = 100;
                             numSubnet++;
 
@@ -233,7 +233,7 @@ namespace HTMLVisualizer
                                 {
                                     if (item3.resparent == item2.resname)
                                     {
-                                        item3.x = item2.x + 20;
+                                        item3.x = item2.x + 50;
                                         item3.y = item2.y + 50;
 
                                         /// VM loop

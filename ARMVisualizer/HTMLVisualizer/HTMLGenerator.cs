@@ -28,10 +28,10 @@ namespace HTMLVisualizer
                    "</html>\n\n";
         }
 
-        public static string WriteVNet(int x, int y, int width, int height)
+        public static string WriteVNet(int x, int y, int width, int height, String name, String prop)
         {
-            string vnetName = "Azure Network";
-            string vnetPrefix = "10.0.0.0/8";
+            string vnetName = name;
+            string vnetPrefix = prop;
             return $"<g transform='translate({x} {y})'>\n" +
                    $"<rect x='0' y='-10' width='{width}' height='{height}' fill='#ffffff' stroke='#1e476c' stroke-width='2'></rect>\n" +
                    $"<rect x='0' y='-10' width='300' height='25' fill='#1e476c' stroke='#1e476c' stroke-width='2'></rect>\n" +
@@ -40,10 +40,10 @@ namespace HTMLVisualizer
                    $"</g>\n\n";
         }
 
-        public static string WriteVM(int x, int y, int height)
+        public static string WriteVM(int x, int y, int height, String name, String prop)
         {
-            string vmName = "Azure VM";
-            string vmType = "Standard G3";
+            string vmName = name;
+            string vmType = prop;
 
             return $"<g transform='translate({x} {y})'>\n" +
                    $"<rect x='0' y='25' width='250' height='{height}' fill='white'stroke='#152060' stroke-width='2'></rect>\n" +
@@ -61,11 +61,11 @@ namespace HTMLVisualizer
                    $"</g>\n\n";
         }
 
-        public static string WriteSubNet(int x, int y, int height, int width = 370, bool networkSecurityGroup = false,
+        public static string WriteSubNet(int x, int y, int height, String name, String prop, int width = 370, bool networkSecurityGroup = false,
             bool loadBalancer = false, bool availabilitySet = false)
         {
-            string subNetName = "CoreNetwork";
-            String subnetPrefix = "10.1.0.0/24";
+            String subNetName = name;
+            String subnetPrefix = prop;
             if (loadBalancer)
             {
                 width += 100;
@@ -88,9 +88,9 @@ namespace HTMLVisualizer
             return result;
         }
 
-        public static string WriteAvailabilitySet(int x, int y, int height)
+        public static string WriteAvailabilitySet(int x, int y, int height, String name)
         {
-            string availablilitySetName = "CoreServices";
+            string availablilitySetName = name;
             return $"<g transform='translate({x} {y})'>\n" +
                    $"<rect x='0' y='0' width='355' height='{height}' fill='#fff3f3' stroke='#ff8B8B' stroke-width='2'></rect>\n" +
                    $"<rect x='80' y='-10' width='275' height='20' fill='#ff8B8B' stroke='#ff8B8B' stroke-width='2'></rect>\n" +
@@ -98,9 +98,9 @@ namespace HTMLVisualizer
                    $"</g>\n\n";
         }
 
-        public static string WriteLoadBalancer(int x, int y)
+        public static string WriteLoadBalancer(int x, int y, String name, String prop)
         {
-            string privateIPAddress = "192.168.10.20";
+            string privateIPAddress = prop;
             return $"<g transform='translate({x} {y})'>\n" +
                    $"<image height='60' width='60' x='8' y='0' xlink:href='icons/s_Azure-load-balancer.png'></image>\n" +
                    $"<text style='font-size: 9pt;font-family: consolas;fill : black;' y='74' x='0'>Plivate IP:</text>\n" +
@@ -111,7 +111,7 @@ namespace HTMLVisualizer
         public static string WriteNIC(int x, int y, bool networkSecurityGroup = false)
         {
             string publicIPAddress = "";
-            string privateIPAddress = "192.168.10.100";
+            string privateIPAddress = "";
             string result = $"<g transform='translate({x} {y})'>\n" +
                             $"<line stroke='#8B2930' stroke-width='2' x1='-25' x2='275' y1='15' y2='15'/>\n" +
                             $"<circle stroke='#8B2930' stroke-width='2' fill='#EB8990'  cx='-25' cy='15' r='4'/>\n" +
@@ -138,28 +138,28 @@ namespace HTMLVisualizer
             {
                 if (item.restype == (int)ARMResourceType.ARM_Vnet)
                 {
-                    result.Append(HTMLGenerator.WriteVNet(item.x,item.y, item.width, item.height));
+                    result.Append(HTMLGenerator.WriteVNet(item.x,item.y, item.width, item.height, item.resname, item.property1));
                 }
 
                 if (item.restype == (int)ARMResourceType.ARM_Subnet)
                 {
-                    result.Append(HTMLGenerator.WriteSubNet(item.x, item.y, item.height, networkSecurityGroup: item.nsgpresent, loadBalancer : item.lbpresent, availabilitySet : item.avsetpresent));
+                    result.Append(HTMLGenerator.WriteSubNet(item.x, item.y, item.height, item.resname, item.property1, networkSecurityGroup: item.nsgpresent, loadBalancer : item.lbpresent, availabilitySet : item.avsetpresent));
                 }
 
                 if (item.restype == (int)ARMResourceType.ARM_AvailabilitySet)
                 {
-                    result.Append(HTMLGenerator.WriteAvailabilitySet(item.x, item.y, item.height));
+                    result.Append(HTMLGenerator.WriteAvailabilitySet(item.x, item.y, item.height, item.resname));
                 }
 
                 if (item.restype == (int)ARMResourceType.ARM_VirtualMachine)
                 {
-                    result.Append(HTMLGenerator.WriteVM(item.x, item.y, item.height));
+                    result.Append(HTMLGenerator.WriteVM(item.x, item.y, item.height, item.resname, item.property1));
                     result.Append(HTMLGenerator.WriteNIC(item.x, item.y + 35));
                 }
 
                 if (item.restype == (int)ARMResourceType.ARM_LoadBalancer)
                 {
-                    result.Append(HTMLGenerator.WriteLoadBalancer(item.x, item.y));
+                    result.Append(HTMLGenerator.WriteLoadBalancer(item.x, item.y, item.resname, item.property1));
                 }
             }
 
@@ -174,7 +174,7 @@ namespace HTMLVisualizer
             result.Append(HTMLGenerator.WriteHeader());
             int Xbase = 50;
             int YBase = 50;
-
+            /*
             // VNET --------------------------------------
             result.Append(HTMLGenerator.WriteVNet(Xbase - 25, YBase - 25, 1450, 1050));
 
@@ -227,7 +227,7 @@ namespace HTMLVisualizer
             result.Append(HTMLGenerator.WriteNIC(Xbase + 1080, YBase + 420));
 
             result.Append(HTMLGenerator.WriteFooter());
-
+            */
             return result.ToString();
         }
     }

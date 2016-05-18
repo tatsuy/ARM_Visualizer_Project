@@ -209,6 +209,9 @@ namespace HTMLVisualizer
                                     opitem.resparent == item2.resname)
                                 {
                                     item2.lbpresent = true;
+
+                                    opitem.x = (numSubnet * 550) + 100;
+                                    opitem.y = 100;
                                 }
                                 if ((opitem.restype == (int)ARMResourceType.ARM_NetworkSecurityGroup) &&
                                     opitem.resparent == item2.resname)

@@ -52,12 +52,12 @@ namespace HTMLVisualizer
                    $"<text style='font-size: 11pt;font-family: consolas;fill : white;' y='0' x='50'>Name: {vmName}</text>\n" +
                    $"<text style='font-size: 9pt;font-family: consolas;fill : white;' y='17' x='50'>Size: {vmType}</text>\n" +
                    $"<image height='30' width='30' x='8' y='-10' xlink:href='icons/s_VM-symbol-only.png'></image>\n" +
-                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 70}' y2='{height - 70}'/>\n" +
-                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 55}' x='10'>Prop01: Sample Property Value</text>\n" +
-                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 50}' y2='{height - 50}'/>\n" +
-                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 35}' x='10'>Prop02: Sample Property Value</text>\n" +
-                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 30}' y2='{height - 30}'/>\n" +
-                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 15}' x='10'>Prop03: Sample Property Value</text>" +
+//                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 70}' y2='{height - 70}'/>\n" +
+//                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 55}' x='10'>Prop01: Sample Property Value</text>\n" +
+//                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 50}' y2='{height - 50}'/>\n" +
+//                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 35}' x='10'>Prop02: Sample Property Value</text>\n" +
+//                   $"<line stroke='#152060' stroke-width='1' x1='5' x2='240' y1='{height - 30}' y2='{height - 30}'/>\n" +
+//                   $"<text style='font-size: 9pt;font-family: consolas;fill : #152060;' y='{height - 15}' x='10'>Prop03: Sample Property Value</text>" +
                    $"</g>\n\n";
         }
 
@@ -110,7 +110,7 @@ namespace HTMLVisualizer
 
         public static string WriteNIC(int x, int y, bool networkSecurityGroup = false)
         {
-            string publicIPAddress = "130.44.10.195";
+            string publicIPAddress = "";
             string privateIPAddress = "192.168.10.100";
             string result = $"<g transform='translate({x} {y})'>\n" +
                             $"<line stroke='#8B2930' stroke-width='2' x1='-25' x2='275' y1='15' y2='15'/>\n" +
@@ -127,6 +127,45 @@ namespace HTMLVisualizer
             }
             result += "</g>\n\n";
             return result;
+        }
+
+        public static string GetHtmlFromARMResources(List<ARMResources> r)
+        {
+            var result = new StringBuilder();
+            result.Append(HTMLGenerator.WriteHeader());
+
+            foreach (var item in r)
+            {
+                if (item.restype == (int)ARMResourceType.ARM_Vnet)
+                {
+                    result.Append(HTMLGenerator.WriteVNet(item.x,item.y, item.width, item.height));
+                }
+
+                if (item.restype == (int)ARMResourceType.ARM_Subnet)
+                {
+                    result.Append(HTMLGenerator.WriteSubNet(item.x, item.y, item.height, networkSecurityGroup: item.nsgpresent, loadBalancer : item.lbpresent, availabilitySet : item.avsetpresent));
+                }
+
+                if (item.restype == (int)ARMResourceType.ARM_AvailabilitySet)
+                {
+                    result.Append(HTMLGenerator.WriteAvailabilitySet(item.x, item.y, item.height));
+                }
+
+                if (item.restype == (int)ARMResourceType.ARM_VirtualMachine)
+                {
+                    result.Append(HTMLGenerator.WriteVM(item.x, item.y, item.height));
+                    result.Append(HTMLGenerator.WriteNIC(item.x, item.y + 35));
+                }
+
+                if (item.restype == (int)ARMResourceType.ARM_LoadBalancer)
+                {
+                    result.Append(HTMLGenerator.WriteLoadBalancer(item.x, item.y));
+                }
+            }
+
+            result.Append(HTMLGenerator.WriteFooter());
+
+            return result.ToString();
         }
 
         public static string GetSampleHtml()

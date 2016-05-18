@@ -34,7 +34,9 @@ namespace HTMLVisualizer
         // Set ARMResourceType
         public int restype;
 
-        bool nsgpresent;
+        public bool nsgpresent;
+        public bool lbpresent;
+        public bool avsetpresent;
 
         public static ARMResources[] PositionCaluculater(ARMResources[] res)
         {
@@ -51,6 +53,10 @@ namespace HTMLVisualizer
             y = 0;
             width = 0;
             height = 0;
+
+            nsgpresent = false;
+            lbpresent = false;
+            avsetpresent = false;
 
             restype = type;
             resname = name;

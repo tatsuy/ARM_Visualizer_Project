@@ -45,17 +45,22 @@ namespace HTMLVisualizer
 
         public void CaluculatePosition(List<ARMResources> r)
         {
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             { 
                 r.OrderBy(_ => _.level);
                 foreach (var item in r)
                 {
                     if (item.resparent != null)
                     {
-                        ARMResources t = r.Find(_ => _.Equals(item.resparent));
-                        if (t.level != -1)
+                        foreach (var item2 in r)
                         {
-                            item.level = t.level++;
+                            if (item.resparent == item2.resname)
+                            {
+                                if (item2.level != -1)
+                                {
+                                    item.level = item2.level + 1;
+                                }
+                            }
                         }
                     }
                 }
@@ -76,11 +81,94 @@ namespace HTMLVisualizer
                 }
             }
 
+            int current;
+            int numSubnet = 0 ;
+            int numVM = 0;
 
+            /// Vnet Loop
+            foreach (var item in r)
+            {
+                current = item.level;
+                
+                if (item.restype == (int)ARMResourceType.ARM_Vnet)
+                {
+                    item.x = 30;
+                    item.y = 30;
+                        
+                    item.width = 400 * (r.Max(_ => _.level) + 1);
+                    item.height = 1200;
 
+                    /// Subnet Loop
+                    foreach (var item2 in r)
+                    {
+                        if (item2.restype == (int)ARMResourceType.ARM_Subnet)
+                        {
+                            foreach (var opitem in r)
+                            {
+                                if ((opitem.restype == (int)ARMResourceType.ARM_AvailabilitySet) && 
+                                    opitem.resparent == item2.resname)
+                                {
+                                    item2.avsetpresent = true;
+                                }
+                                if ((opitem.restype == (int)ARMResourceType.ARM_LoadBalancer) &&
+                                    opitem.resparent == item2.resname)
+                                {
+                                    item2.lbpresent = true;
+                                }
+                                if ((opitem.restype == (int)ARMResourceType.ARM_NetworkSecurityGroup) &&
+                                    opitem.resparent == item2.resname)
+                                {
+                                    item2.nsgpresent = true;
+                                }
+                            }
 
+                            item2.x = (numSubnet * 550) + 100;
+                            item2.y = 100;
+                            numSubnet++;
 
+                            numVM = 0;
 
+                            /// AVset Loop
+                            foreach (var item3 in r)
+                            {
+                                if (item3.restype == (int)ARMResourceType.ARM_AvailabilitySet)
+                                {
+                                    if (item3.resparent == item2.resname)
+                                    {
+                                        item3.x = item2.x + 20;
+                                        item3.y = item2.y + 50;
+
+                                        /// VM loop
+                                        foreach (var item4 in r)
+                                        {
+                                            if ((item4.resparent == item3.resname) &&
+                                                (item4.restype == (int)ARMResourceType.ARM_VirtualMachine))
+                                            {
+                                                item4.x = item3.x + 80;
+                                                item4.y = item3.y + 50 + (numVM * 100);
+                                                item4.height = 50;
+                                                numVM++;
+                                            }
+                                        }
+
+                                        item3.height = (numVM * 100) + 50;
+                                    }
+                                }
+
+                                if ((item3.restype == (int)ARMResourceType.ARM_VirtualMachine) &&
+                                    item3.resparent == item2.resname)
+                                {
+                                    item3.x = item2.x + 80;
+                                    item3.y = item2.y + 50 + (numVM * 100);
+                                    item3.height = 50;
+                                    numVM++;
+                                }
+                            }
+                            item2.height = numVM * 60 + 220;
+                        }
+                    }                    
+                }
+            }
         }
 
         public Form1()
@@ -102,11 +190,14 @@ namespace HTMLVisualizer
                 } 
             }*/
 
-            //List<ARMResources> res = BuildSampleResource();
-            //CaluculatePosition(res);
+            List<ARMResources> res = BuildSampleResource();
+            CaluculatePosition(res);
 
+            List<ARMResources> a = res;
 
-            File.WriteAllText("test.html", HTMLGenerator.GetSampleHtml());
+            File.WriteAllText("test.html", HTMLGenerator.GetHtmlFromARMResources(a));
+
+            // File.WriteAllText("test.html", HTMLGenerator.GetSampleHtml());
             string url = Path.Combine(Environment.CurrentDirectory, "test.html");
 
             m_chromeBrowser = new ChromiumWebBrowser(url);

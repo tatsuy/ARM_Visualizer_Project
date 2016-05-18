@@ -96,7 +96,7 @@ namespace HTMLVisualizer
                         }
                         break;
                     case "virtualNetworks":
-                        r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_Vnet, null));
+                        r.Add(new ARMResources(resource.Name, (int)ARMResourceType.ARM_Vnet, null, resource.properties.Find(_ => _.Name == "addressSpace").Properties.First().Value));
 
                         var subnets = resource.properties.Find(_ => _.Name == "subnets");
 
